@@ -73,27 +73,27 @@ class LoginPage extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                    );
                   },
                   child: Text(
                     "Inscription",
                     style: GoogleFonts.shrikhand(color: Colors.red, fontSize: 20, decoration: TextDecoration.underline, decorationColor: Colors.red),
-                    //Navigator.push(context,MaterialPageRoute(builder: (context) => RegisterPage()),);
                   ),
                 ),
               ],
             ),
           ),
         ),
-      ));
+      ),
+    );
   }
 }
 
 void main() {
   runApp(MaterialApp(
-    title: 'Login Demo',
+    title: 'Login',
     theme: ThemeData(primarySwatch: Colors.blue),
     home: LoginPage(),
   ));
