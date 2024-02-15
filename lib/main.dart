@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'login.dart';
+//import 'package:google_fonts/google_fonts.dart';
+//import 'login.dart';
 import 'menu.dart'; // Importez le fichier de menu.dart
 
 void main() {
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Teaser',
-      theme: ThemeData(),
+      theme: ThemeData(
+      ),
       home: const MyHomePage(title: 'Teaser'),
     );
   }
