@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:teaser/register.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +15,7 @@ class LoginPage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.teaserO,
-        iconTheme: IconThemeData(color: Colors.white), // Change la couleur de la flèche en blanc
+        iconTheme: const IconThemeData(color: Colors.white), // Change la couleur de la flèche en blanc
       ),
       body: Container(
         color: Colors.teaserO, // Fond rouge pour le body
@@ -29,7 +31,7 @@ class LoginPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.shrikhand(color: Colors.blancC, fontSize: 40)
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Username',
@@ -42,7 +44,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -56,20 +58,19 @@ class LoginPage extends StatelessWidget {
                   ),
                   obscureText: true,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: Implement login logic
                   },
-                  child: Text('Connexion', style: GoogleFonts.shrikhand(color: Colors.white, fontSize: 20)),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.OrangeC,
+                    backgroundColor: Colors.OrangeC,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
+                  child: Text('Connexion', style: GoogleFonts.shrikhand(color: Colors.white, fontSize: 20)),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -95,6 +96,6 @@ void main() {
   runApp(MaterialApp(
     title: 'Login',
     theme: ThemeData(primarySwatch: Colors.blue),
-    home: LoginPage(),
+    home: const LoginPage(),
   ));
 }

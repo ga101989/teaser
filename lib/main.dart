@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:google_fonts/google_fonts.dart';
 //import 'login.dart';
 import 'menu.dart'; // Importez le fichier de menu.dart
+//import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,8 +32,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return MenuPage();
+    return const MenuPage();
   }
 }

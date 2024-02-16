@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -29,14 +31,14 @@ class _ProfilePageState extends State<ProfilePage> {
           style: GoogleFonts.shrikhand(color: Colors.teaserO, fontSize: 40),
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.teaserO, size: 40),
+        iconTheme: const IconThemeData(color: Colors.teaserO, size: 40),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings,size: 40, color: Colors.teaserO),
+            icon: const Icon(Icons.settings,size: 40, color: Colors.teaserO),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
               );
             },
           ),
@@ -44,15 +46,15 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(bottom: 20),
+          padding: const EdgeInsets.only(bottom: 20),
           child: Center(
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Color(0xFFF4F3F3),
+                    color: const Color(0xFFF4F3F3),
                     border: Border.all(color: Colors.orange, width: 2),
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -61,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Container(
                         width: 150,
                         height: 150,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             image: AssetImage('images/Ellipse.png'),
@@ -69,13 +71,13 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         '@ Nom d\'utilisateur',
                         style: GoogleFonts.shrikhand(color: Colors.teaserO, fontSize: 24),
                       ),
-                      SizedBox(height: 20),
-                      Row(
+                      const SizedBox(height: 20),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ProfileStat(label: 'Sons', value: '100'),
@@ -86,9 +88,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
                       Row(
@@ -102,10 +104,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                             child: Text(
                               'Mes teases',
-                              style: GoogleFonts.shrikhand(fontSize: 20, color: _isSelected ? Color(0xFFFF914D) : Color(0xFFFF914D).withOpacity(0.5)),
+                              style: GoogleFonts.shrikhand(fontSize: 20, color: _isSelected ? const Color(0xFFFF914D) : const Color(0xFFFF914D).withOpacity(0.5)),
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -114,39 +116,39 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                             child: Text(
                               'Mes likes',
-                              style: GoogleFonts.shrikhand(fontSize: 20, color: _isSelected ? Color(0xFFFF914D).withOpacity(0.5) : Color(0xFFFF914D)),
+                              style: GoogleFonts.shrikhand(fontSize: 20, color: _isSelected ? const Color(0xFFFF914D).withOpacity(0.5) : const Color(0xFFFF914D)),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             height: 2,
                             width: 120,
-                            color: _isSelected ? Color(0xFFFF914D) : Color(0xFFFF914D).withOpacity(0.5),
+                            color: _isSelected ? const Color(0xFFFF914D) : const Color(0xFFFF914D).withOpacity(0.5),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Container(
                             height: 2,
                             width: 120,
-                            color: !_isSelected ? Color(0xFFFF914D) : Color(0xFFFF914D).withOpacity(0.5),
+                            color: !_isSelected ? const Color(0xFFFF914D) : const Color(0xFFFF914D).withOpacity(0.5),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GridView.count(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: List.generate(
                     teasers.length,
                     (index) {
@@ -159,15 +161,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: Colors.teaserO,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.play_circle_filled, size: 40, color: Colors.white),
-                              SizedBox(height: 10),
+                              const Icon(Icons.play_circle_filled, size: 40, color: Colors.white),
+                              const SizedBox(height: 10),
                               Text(
                                 '${teasers[index].views}',
-                                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                                style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -199,8 +201,8 @@ class ProfileStat extends StatelessWidget {
           value,
           style: GoogleFonts.shrikhand(color: Colors.teaserO, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 5),
-        if(label == 'Sons') Icon(Icons.music_note, color: Colors.teaserO, size: 20),
+        const SizedBox(height: 5),
+        if(label == 'Sons') const Icon(Icons.music_note, color: Colors.teaserO, size: 20),
         if(label != 'Sons') Text(
           label,
           style: GoogleFonts.shrikhand(color: Colors.teaserO, fontSize: 14),

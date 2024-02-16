@@ -20,14 +20,14 @@ class _RecordingPageState extends State<RecordingPage> with SingleTickerProvider
           style: GoogleFonts.shrikhand(color: Colors.teaserO, fontSize: 40),
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.teaserO, size: 40),
+        iconTheme: const IconThemeData(color: Colors.teaserO, size: 40),
         actions: [
           IconButton(
-            icon: Icon(Icons.account_circle, size: 40, color: Colors.teaserO),
+            icon: const Icon(Icons.account_circle, size: 40, color: Colors.teaserO),
             onPressed: () {
                Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
               );
             },
           ),

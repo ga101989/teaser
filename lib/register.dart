@@ -14,7 +14,7 @@ class RegisterPage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.teaserO,
-        iconTheme: IconThemeData(color: Colors.white), // Change la couleur de la flèche en blanc
+        iconTheme: const IconThemeData(color: Colors.white), // Change la couleur de la flèche en blanc
       ),
       body: Container(
         color: Colors.teaserO,
@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.shrikhand(color: Colors.blancC, fontSize: 40)
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Username',
@@ -44,7 +44,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -61,7 +61,7 @@ class RegisterPage extends StatelessWidget {
                       FilteringTextInputFormatter.allow(RegExp(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -75,20 +75,18 @@ class RegisterPage extends StatelessWidget {
                     ),
                     obscureText: true,
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   ElevatedButton(
-                    onPressed: () {
-                      // TODO: Implement login logic
-                    },
-                    child: Text('Inscription', style: GoogleFonts.shrikhand(color: Colors.white, fontSize: 20)),
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.OrangeC,
+                      backgroundColor: Colors.OrangeC,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
+                    child: Text('Inscription', style: GoogleFonts.shrikhand(color: Colors.white, fontSize: 20)),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);

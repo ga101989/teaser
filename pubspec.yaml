@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   rename_app: ^1.3.2
   google_fonts: ^6.1.0
+  #flutter_native_splash: ^2.3.11
   
 
 dev_dependencies:
@@ -71,6 +72,9 @@ flutter:
   assets:
     - images/vinyle_noir.png
     - images/Ellipse.png
+    - images/didier.png
+    - images/tera.png
+    - images/minh.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
