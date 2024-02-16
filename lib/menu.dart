@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teaser/profil.dart';
-//import 'login.dart';
+import 'package:teaser/recording.dart';
+
+class Sound {
+  final String imagePath;
+  final String title;
+  final String artist;
+  final String description;
+
+  Sound({
+    required this.imagePath,
+    required this.title,
+    required this.artist,
+    required this.description,
+  });
+}
 
 class MenuPage extends StatefulWidget {
   @override
@@ -9,16 +23,47 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> with SingleTickerProviderStateMixin {
+  late PageController _pageController;
   late AnimationController _controller;
-  bool _isPaused = false;
+  bool _isPlaying = false;
+  int _currentSoundIndex = 0;
 
-@override
+  final List<Sound> sounds = [
+    Sound(
+      imagePath: 'images/Ellipse.png',
+      title: 'Titre de la chanson 1',
+      artist: 'Artiste 1',
+      description: 'Description du son 1',
+    ),
+    Sound(
+      imagePath: 'images/vinyle_noir.png',
+      title: 'Titre de la chanson 2',
+      artist: 'Artiste 2',
+      description: 'Description du son 2',
+    ),
+    Sound(
+      imagePath: 'images/Ellipse.png',
+      title: 'Titre de la chanson 3',
+      artist: 'Artiste 3',
+      description: 'Description du son 3',
+    ),
+    Sound(
+      imagePath: 'images/vinyle_noir.png',
+      title: 'Titre de la chanson 4',
+      artist: 'Artiste 4',
+      description: 'Description du son 4',
+    ),
+    // Ajoutez d'autres sons ici
+  ];
+
+  @override
   void initState() {
     super.initState();
+    _pageController = PageController();
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 5), // Durée de la rotation
-    )..repeat(); // Répéter l'animation en boucle
+      )..repeat();
   }
 
   @override
@@ -35,7 +80,7 @@ class _MenuPageState extends State<MenuPage> with SingleTickerProviderStateMixin
           IconButton(
             icon: Icon(Icons.account_circle, size: 40, color: Colors.teaserO),
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProfilePage()),
               );
@@ -43,55 +88,103 @@ class _MenuPageState extends State<MenuPage> with SingleTickerProviderStateMixin
           ),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/vinyle_noir.png'), 
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.center,
-          ),
-        ),
-        child: Center(
-          child: GestureDetector(
-            onTap: () {
+      body: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (details.primaryVelocity! > 0) {
+            _pageController.previousPage(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.ease,
+            );
+          } else if (details.primaryVelocity! < 0) {
+            _pageController.nextPage(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.ease,
+            );
+          }
+        },
+        onTap: () {
               setState(() {
-                if (_isPaused) {
+                if (_isPlaying) {
                   _controller.repeat(); // Reprendre l'animation si elle est en pause
                 } else {
                   _controller.stop(); // Mettre en pause l'animation
                 }
-                _isPaused = !_isPaused; // Inverser l'état de la pause
+                _isPlaying = !_isPlaying; // Inverser l'état de la pause
               });
             },
-            child: Stack(
-              children: [
-                RotationTransition(
-                  turns: _controller,
-                  child: Center(
-                  child: Container(
-                    width: 300,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('images/Ellipse.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  ),
+        child: PageView.builder(
+          //_isPlaying,
+          controller: _pageController,
+          itemCount: sounds.length,
+          itemBuilder: (context, index) {
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/vinyle_noir.png'),
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.center,
                 ),
-                if (_isPaused)
+              ),
+              child: Stack(
+                children: [
                   Center(
-                    child: Icon(
-                      Icons.play_arrow,
-                      size: 100,
-                      color: Colors.white,
+                    child: RotationTransition(
+                      turns: _controller,
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage(sounds[index].imagePath),//sounds[index].imagePath
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                                            
                     ),
                   ),
-              ],
-            ),
-          ),
+                  Positioned(
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          sounds[index].title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.teaserO,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          sounds[index].artist,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.teaserO,
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          sounds[index].description,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.teaserO,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -126,7 +219,12 @@ class _MenuPageState extends State<MenuPage> with SingleTickerProviderStateMixin
                   ),
                   child: IconButton(
                     icon: Icon(Icons.add, size: 40, color: Colors.teaserO),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RecordingPage()),
+                      );
+                    },
                   ),
                 ),
                 Expanded(child: Container()),
@@ -147,13 +245,13 @@ class _MenuPageState extends State<MenuPage> with SingleTickerProviderStateMixin
           ),
         ),
       ),
-
     );
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 }
